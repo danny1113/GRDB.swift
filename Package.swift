@@ -40,17 +40,13 @@ let package = Package(
         .watchOS(.v4),
     ],
     products: [
-        .library(name: "CSQLite", targets: ["CSQLite"]),
         .library(name: "GRDB", targets: ["GRDB"]),
     ],
     dependencies: dependencies,
     targets: [
         .target(
-            name: "CSQLite",
-            publicHeadersPath: "."),
-        .target(
             name: "GRDB",
-            dependencies: ["CSQLite"],
+            dependencies: [],
             path: "GRDB",
             cSettings: cSettings,
             swiftSettings: swiftSettings),
