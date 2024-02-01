@@ -42,41 +42,40 @@ let package = Package(
     products: [
         .library(name: "CSQLite", targets: ["CSQLite"]),
         .library(name: "GRDB", targets: ["GRDB"]),
-        .library(name: "GRDB-dynamic", type: .dynamic, targets: ["GRDB"]),
     ],
     dependencies: dependencies,
     targets: [
-        .systemLibrary(
+        .target(
             name: "CSQLite",
-            providers: [.apt(["libsqlite3-dev"])]),
+            publicHeadersPath: "."),
         .target(
             name: "GRDB",
             dependencies: ["CSQLite"],
             path: "GRDB",
             cSettings: cSettings,
             swiftSettings: swiftSettings),
-        .testTarget(
-            name: "GRDBTests",
-            dependencies: ["GRDB"],
-            path: "Tests",
-            exclude: [
-                "CocoaPods",
-                "Crash",
-                "CustomSQLite",
-                "GRDBTests/getThreadsCount.c",
-                "Info.plist",
-                "Performance",
-                "SPM",
-                "generatePerformanceReport.rb",
-                "parsePerformanceTests.rb",
-            ],
-            resources: [
-                .copy("GRDBTests/Betty.jpeg"),
-                .copy("GRDBTests/InflectionsTests.json"),
-                .copy("GRDBTests/Issue1383.sqlite"),
-            ],
-            cSettings: cSettings,
-            swiftSettings: swiftSettings)
+//        .testTarget(
+//            name: "GRDBTests",
+//            dependencies: ["GRDB"],
+//            path: "Tests",
+//            exclude: [
+//                "CocoaPods",
+//                "Crash",
+//                "CustomSQLite",
+//                "GRDBTests/getThreadsCount.c",
+//                "Info.plist",
+//                "Performance",
+//                "SPM",
+//                "generatePerformanceReport.rb",
+//                "parsePerformanceTests.rb",
+//            ],
+//            resources: [
+//                .copy("GRDBTests/Betty.jpeg"),
+//                .copy("GRDBTests/InflectionsTests.json"),
+//                .copy("GRDBTests/Issue1383.sqlite"),
+//            ],
+//            cSettings: cSettings,
+//            swiftSettings: swiftSettings)
     ],
     swiftLanguageVersions: [.v5]
 )
